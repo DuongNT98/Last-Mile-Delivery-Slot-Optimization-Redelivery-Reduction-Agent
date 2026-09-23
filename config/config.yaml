@@ -1,0 +1,14 @@
+# Runtime parameters — loaded by AgentRegistry, passed as Graph(config=...).
+# This is a SEPARATE file from config/agent.yaml (the static manifest): agent.yaml
+# is AgentRegistry's discovery entry point, this file is the agent's own runtime
+# config, keyed by whatever your Graph/node code reads via self.config.get(...).
+# See the framework documentation for the agent.yaml / config.yaml split of responsibility.
+
+max_retry: 3
+timeout_s: 30
+
+# Template-specific: read by DeliverySlotWorkflowGraphNode / DeliverySlotWorkflowGraph
+# to cap the reschedule-offer loop in FailedDeliveryNode before konbini escalation.
+max_reschedule_retries: 3
+
+# No hitl block: this template has no interrupt() call (no HITL flow).
